@@ -17,7 +17,7 @@ ReactDOM.render(
                 {
                   <Switch>
                     {
-                      route.routes && route.routes.map((subRoute, i) => (
+                      route.children && route.children.map((subRoute, i) => (
                         <Route
                           key={i}
                           path={subRoute.path}
