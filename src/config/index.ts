@@ -3,6 +3,7 @@ import prod from './prod.config';
 
 export interface IConfig {
   apiUrl: string;
+  tokenKey: string;
 }
 
 const env = process.env.NODE_ENV || 'development';
