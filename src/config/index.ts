@@ -1,10 +1,11 @@
 import dev from './dev.config';
 import prod from './prod.config';
 
-export interface Config {
+export interface IConfig {
   apiUrl: string;
 }
 
 const env = process.env.NODE_ENV || 'development';
 
-export const config = env === 'production' ? prod : dev;
+const config = env === 'production' ? prod : dev;
+export default config;

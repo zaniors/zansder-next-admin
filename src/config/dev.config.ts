@@ -1,6 +1,6 @@
-import { Config } from './index';
+import { IConfig } from './index';
 
-const devConfig: Config = {
+const devConfig: IConfig = {
   apiUrl: 'http://localhost:9200',
 }
 

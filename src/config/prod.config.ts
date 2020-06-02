@@ -1,6 +1,6 @@
-import { Config } from './index';
+import { IConfig } from './index';
 
-const prodConfig: Config = {
+const prodConfig: IConfig = {
   apiUrl: 'http://api.compelcode.com',
 }
 
