@@ -1,3 +1,31 @@
 .login-container {
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #2d3a4b;
+
+  .login-title {
+    font-size: 26px;
+    color: #eee;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .login-content {
+    width: 520px;
+
+    // 重置antd部分样式
+    .ant-form-item-label>label {
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .ant-checkbox-wrapper {
+      color: #fff;
+    }
+  }
 }
