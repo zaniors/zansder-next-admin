@@ -52,6 +52,8 @@ http.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
+    // 返回response.data，其它axios包装的数据不需要
+    // 重写axios.d.ts，覆盖AxiosResponse
     const res = response.data;
     return res;
   },
@@ -65,7 +67,7 @@ http.interceptors.response.use(
     }
 
     const errResponse = err.data as IErrResponse;
-    
+
     /** 对401进行重定向登录页面 */
     if (errResponse.code === 401) {
       message.error('用户未登录或者登录过期，请重新登录！');
