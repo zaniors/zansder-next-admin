@@ -14,7 +14,7 @@ export const LayoutAdminRoute = (props: any) => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
         <section className="logo"></section>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu theme="dark" defaultOpenKeys={['/' + pathname.split('/')[1]]} defaultSelectedKeys={[pathname]} mode="inline">
           {
             props.route.routes && props.route.routes.map((item: any) => {
               if (item.routes) {
