@@ -6,6 +6,7 @@ import axios from 'axios';
 import { message } from 'antd';
 import config from '../config';
 import { IErrResponse } from '../interface/response';
+import history from '../utils/history';
 
 // create an axios instance
 const http = axios.create({
@@ -64,13 +65,14 @@ http.interceptors.response.use(
     }
 
     const errResponse = err.data as IErrResponse;
-
+    
     /** 对401进行重定向登录页面 */
     if (errResponse.code === 401) {
-      window.location.replace('/login')
+      message.error('用户未登录或者登录过期，请重新登录！');
+      history.push('/login');
       return Promise.reject(error);
     }
-    console.log(errResponse)
+
     message.error(`错误消息：${errResponse.message}`);
     return Promise.reject(error);
   }

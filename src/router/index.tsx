@@ -21,6 +21,7 @@ const routes = [
       {
         path: '/login',
         component: Login,
+        exact: true,
       },
       {
         component: LayoutAdminRoute,
@@ -48,7 +49,8 @@ const routes = [
                 path: '/article/list',
                 component: ArticleList,
                 name: '文章列表',
-                icon: ProfileOutlined
+                icon: ProfileOutlined,
+                exact: true,
               }
             ]
           },
@@ -61,7 +63,8 @@ const routes = [
                 path: '/system/users',
                 component: SystemUsers,
                 name: '用户管理',
-                icon: UserOutlined
+                icon: UserOutlined,
+                exact: true,
               }
             ]
           }
