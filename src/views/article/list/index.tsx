@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Card, Avatar } from 'antd';
-import { getArticles } from '../article.service';
+import { getArticles } from '../index.service';
 
 const { Meta } = Card;
 
