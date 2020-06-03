@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from 'antd';
+import { renderRoutes } from 'react-router-config';
 
-function App() {
+export const AppRoute = (props: any) => {
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
-    </div>
-  );
+    <section>
+      {renderRoutes(props.route.routes)}
+    </section>
+  )
 }
 
-export default App;
+export default AppRoute;

@@ -1,40 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 import routes from './router';
 import './index.scss';
 
 ReactDOM.render(
-  <Router>
-    <Switch>
-      {
-        routes.map((route, i) => (
-          <Route
-            key={i}
-            path={route.path}
-            render={props => (
-              <route.component>
-                {
-                  <Switch>
-                    {
-                      route.children && route.children.map((subRoute, i) => (
-                        <Route
-                          key={i}
-                          path={subRoute.path}
-                          render={props => (
-                            <subRoute.component />
-                          )} >
-                        </Route>
-                      ))
-                    }
-                  </Switch>
-                }
-              </route.component>
-            )}
-          />
-        ))
-      }
-    </Switch>
-  </Router>,
+  <BrowserRouter>
+    {renderRoutes(routes)}
+  </BrowserRouter>,
   document.getElementById('root')
 );

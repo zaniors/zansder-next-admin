@@ -56,16 +56,18 @@ http.interceptors.response.use(
   },
   error => {
     const err = error.response;
+
+    if (!err) {
+      // 如果服务端未响应任何错误则抛出异常消息
+      message.error('未知错误，请稍候再试！');
+      return Promise.reject(error);
+    }
+
     const errResponse = err.data as IErrResponse;
 
     /** 对401进行重定向登录页面 */
     if (errResponse.code === 401) {
       window.location.replace('/login')
-    }
-
-    if (!err) {
-      // 如果服务端未响应任何错误则抛出异常消息
-      message.error('未知错误，请稍候再试！');
       return Promise.reject(error);
     }
     console.log(errResponse)
