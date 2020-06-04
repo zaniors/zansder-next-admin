@@ -1,46 +1,60 @@
-import React, { Component } from 'react';
-import { Switch, Card, Avatar } from 'antd';
-import { getArticles } from '../index.service';
+import React, { createContext, useState, FC, useEffect } from 'react';
+import { Card, message, Modal } from 'antd';
+import { getArticlesAxios, delArticleAxios } from '../index.service';
+import { ArticleOutputData } from '../../../model/article';
+import ArticleHeader from './header';
+import ArticleContent from './content';
+import './index.scss';
 
-const { Meta } = Card;
+interface IArticleContext {
+  data: ArticleOutputData[];
+  loading: boolean;
+  onDelArticle?: () => void;
+}
+export const ArticleContext = createContext<IArticleContext>({ data: [], loading: true });
 
-class ArticleList extends Component {
-  state = {
-    loading: true,
-  };
+const ArticleList: FC = () => {
+  const [articleListData, setArticleListData] = useState<ArticleOutputData[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  componentDidMount = () => {
-    this.loadArticles();
+  const loadArticleList = async () => {
+    const { data } = await getArticlesAxios();
+    setArticleListData(data);
+    setLoading(false);
   }
 
-  onChange = (checked: boolean) => {
-    this.setState({ loading: !checked });
-  };
-
-  loadArticles = async () => {
-    const data = await getArticles();
-    console.log(data)
+  const delArticleHandle = async () => {
+    Modal.confirm({
+      title: '提示',
+      content: '是否删除这篇文章？',
+      onOk: async () => {
+        await delArticleAxios();
+        loadArticleList();
+        message.success('文章删除成功');
+      }
+    })
   }
 
-  render() {
-    const { loading } = this.state;
+  useEffect(() => {
+    loadArticleList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-    return (
-      <section className="article-list-container">
-        <Switch checked={!loading} onChange={this.onChange} />
-
-        <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-            title="Card title"
-            description="This is the description"
-          />
+  return (
+    <section className="article-list-container">
+      <ArticleContext.Provider
+        value={{
+          data: articleListData,
+          loading,
+          onDelArticle: delArticleHandle
+        }}
+      >
+        <Card title={<ArticleHeader />}>
+          <ArticleContent />
         </Card>
-      </section>
-    )
-  }
+      </ArticleContext.Provider>
+    </section>
+  )
 }
 
 export default ArticleList;

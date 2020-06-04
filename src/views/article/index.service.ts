@@ -3,10 +3,15 @@ import ApiUrl from '../../api/api-url';
 import { IResponse } from '../../interface/response';
 import { ArticleOutputData } from '../../model/article';
 
-const getArticles = () => {
-  return http.get<IResponse<ArticleOutputData>>(ApiUrl.ArticleList);
+const getArticlesAxios = () => {
+  return http.get<IResponse<ArticleOutputData[]>>(ApiUrl.ArticleList);
+}
+
+const delArticleAxios = () => {
+  return http.delete(ApiUrl.ArticleList);
 }
 
 export {
-  getArticles
+  getArticlesAxios,
+  delArticleAxios,
 }
