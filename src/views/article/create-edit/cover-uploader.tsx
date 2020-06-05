@@ -1,13 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 import { Upload, message } from 'antd';
 import { UploadChangeParam, RcFile } from 'antd/lib/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import ApiUrl from '../../../api/api-url';
 import config from '../../../config';
+import { ArticleCreateEditContext } from './index';
 
-const ArticleCoverUploader: FC = () => {
+
+const ArticleCoverUploader: FC = (props) => {
   const [coverLoading, setCoverLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
+  const context = useContext(ArticleCreateEditContext)
+
+  useEffect(() => {
+    setImageUrl(context.cover)
+  }, [context.cover])
 
   const onBeforeUpload = (file: RcFile) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
