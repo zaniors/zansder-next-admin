@@ -21,11 +21,14 @@ export const LayoutAdminRoute = (props: any) => {
                 return (
                   <SubMenu key={item.path} title={item.name}>
                     {
-                      item.routes.map((subItem: any) => (
-                        <Menu.Item key={subItem.path} icon={<subItem.icon />}>
-                          <Link to={subItem.path}>{subItem.name}</Link>
-                        </Menu.Item>
-                      ))
+                      item.routes.map((subItem: any) => {
+                        return subItem.name
+                          ?
+                          <Menu.Item key={subItem.path} icon={<subItem.icon />}>
+                            <Link to={subItem.path}>{subItem.name}</Link>
+                          </Menu.Item>
+                          : null
+                      })
                     }
                   </SubMenu>
                 )
@@ -48,7 +51,7 @@ export const LayoutAdminRoute = (props: any) => {
             {renderRoutes(props.route.routes)}
           </section>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>&copy;2020 Power By ZAnsder</Footer>
+        <Footer style={{ textAlign: 'center' }}>&copy;2020 Power By Zhangxu</Footer>
       </Layout>
     </Layout>
   )

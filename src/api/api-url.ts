@@ -6,7 +6,8 @@
  */
 enum ApiUrl {
   ArticleList = '/article',
-  Login = '/login'
+  Login = '/login',
+  Upload = '/upload'
 }
 
 export default ApiUrl;

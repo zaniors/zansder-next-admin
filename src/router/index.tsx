@@ -5,7 +5,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { LayoutAdminRoute } from '../layout';
-import Home from '../views/home/index';
+import Home from '../views/home';
 import Resume from '../views/resume';
 import ArticleList from '../views/article/list';
 import Login from '../views/login';
@@ -13,6 +13,7 @@ import ArticleRoute from '../views/article';
 import AppRoute from '../App';
 import SystemRoute from '../views/system';
 import SystemUsers from '../views/system/users';
+import ArticleCreateEdit from '../views/article/create-edit';
 
 const routes = [
   {
@@ -47,6 +48,14 @@ const routes = [
                 component: ArticleList,
                 name: '文章列表',
                 icon: ProfileOutlined,
+              },
+              {
+                path: '/article/create',
+                component: ArticleCreateEdit,
+              },
+              {
+                path: '/article/edit/:id',
+                component: ArticleCreateEdit,
               }
             ]
           },
