@@ -9,7 +9,7 @@ import './index.scss';
 interface IArticleContext {
   data: ArticleOutputData[];
   loading: boolean;
-  onDelArticle?: () => void;
+  onDelArticle?: (id: string) => void;
 }
 export const ArticleContext = createContext<IArticleContext>({ data: [], loading: true });
 
@@ -23,12 +23,12 @@ const ArticleList: FC = () => {
     setLoading(false);
   }
 
-  const delArticleHandle = async () => {
+  const delArticleHandle = async (id: string) => {
     Modal.confirm({
       title: '提示',
       content: '是否删除这篇文章？',
       onOk: async () => {
-        await delArticleAxios();
+        await delArticleAxios(id);
         loadArticleList();
         message.success('文章删除成功');
       }

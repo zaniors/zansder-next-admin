@@ -13,7 +13,7 @@ const ArticleContent: FC = () => {
   }
 
   const onDelArticle = (id: string) => {
-    context.onDelArticle && context.onDelArticle();
+    context.onDelArticle && context.onDelArticle(id);
   }
 
 
