@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, useLocation, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import { renderRoutes } from 'react-router-config';
 
@@ -45,7 +45,6 @@ export const LayoutAdminRoute = (props: any) => {
         <Header className="site-layout-background" style={{ padding: 0 }} />
         <Content style={{ margin: '0 16px' }}>
           <section className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            {pathname === '/admin' && <Redirect to={'/admin/home'} />}
             {renderRoutes(props.route.routes)}
           </section>
         </Content>
