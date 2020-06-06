@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useContext } from 'react';
+import React, { FC, useState, useContext } from 'react';
 import { Upload, message } from 'antd';
 import { UploadChangeParam, RcFile } from 'antd/lib/upload';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
