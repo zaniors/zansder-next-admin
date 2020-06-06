@@ -22,11 +22,11 @@ const ArticleContent: FC = () => {
       <Table
         loading={context.loading}
         dataSource={context.data}
-        rowKey="_id"
+        rowKey="id"
         size="small"
         bordered
       >
-        <Table.Column title="ID" dataIndex="_id" key="id" />
+        <Table.Column title="ID" dataIndex="id" key="id" />
         <Table.Column title="文章标题" dataIndex="title" key="title" ellipsis />
         <Table.Column title="文章描述" dataIndex="intro" key="intro" ellipsis />
         <Table.Column
@@ -47,8 +47,8 @@ const ArticleContent: FC = () => {
           key="action"
           render={(_, item: ArticleOutputData) => (
             <>
-              <Button type="primary" onClick={onEditArticle.bind(null, item._id)}>编辑</Button>
-              <Button type="text" danger onClick={onDelArticle.bind(null, item._id)}>删除</Button>
+              <Button type="primary" onClick={onEditArticle.bind(null, item.id)}>编辑</Button>
+              <Button type="text" danger onClick={onDelArticle.bind(null, item.id)}>删除</Button>
             </>
           )}
         />

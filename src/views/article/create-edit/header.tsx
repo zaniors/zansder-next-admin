@@ -8,6 +8,7 @@ const ArticleCreateEditHeader: FC = () => {
   const context = useContext(ArticleCreateEditContext);
 
   const onClickHandle = () => {
+    console.log('header组件', context)
     if (context.id) {
       context.onUpdateArticle && context.onUpdateArticle();
       return;

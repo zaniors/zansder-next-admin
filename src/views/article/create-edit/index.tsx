@@ -1,25 +1,26 @@
 import React, { useState, useEffect, useCallback, createContext } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Card, Form, Input, message } from 'antd';
-import ArticleCreateEditHeader from './header';
-import ArticleCoverUploader from './cover-uploader';
 import { getArticleByIdAxios, updateArticleAxios, createArticleAxios } from '../index.service';
 import { ArticleInput } from '../../../model/article';
-import './index.scss';
+import ArticleCreateEditHeader from './header';
+import ArticleCoverUploader from './cover-uploader';
 import history from '../../../utils/history';
+import './index.scss';
 
 interface IArticleCreateEditContext {
   id: string;
   cover: string;
   onUpdateArticle?: () => void;
   onCreateArticle?: () => void;
+  onUpdateCover?: (cover: string) => void;
 }
 export const ArticleCreateEditContext = createContext<IArticleCreateEditContext>({ cover: '', id: '' });
 
-const ArticleCreateEdit = withRouter((props) => {
-  const [id] = useState(props.match.params.id);
+const ArticleCreateEdit = () => {
   const [form] = Form.useForm();
   const [articleData, setArticleData] = useState<ArticleInput>()
+  const { id } = useParams();
 
   const loadArticleById = useCallback(async () => {
     if (!id) {
@@ -31,17 +32,27 @@ const ArticleCreateEdit = withRouter((props) => {
   }, [form, id]);
 
   const updateArticleHandle = async () => {
-    const input = form.getFieldsValue();
-    input._id = id;
+    const input = { ...articleData, ...form.getFieldsValue() }
+    setArticleData(input);
 
     await updateArticleAxios(input);
-    message.success('保存成功')
+    message.success('更新成功');
   }
 
   const createArticleHandle = () => {
     const input = form.getFieldsValue();
     createArticleAxios(input);
     history.push('/article/list');
+    message.success('创建成功');
+  }
+
+  /**
+   * 文章封面子组件更新封面地址
+   * @param cover 封面的地址
+   */
+  const uploaderUpdateCoverHandle = (cover: string) => {
+    form.setFieldsValue({ cover });
+    setArticleData({ ...articleData, cover });
   }
 
   useEffect(() => {
@@ -54,14 +65,16 @@ const ArticleCreateEdit = withRouter((props) => {
     wrapperCol: { span: 10 },
   };
 
+  console.log('父组件')
   return (
     <section className="article-create-edit-container">
       <ArticleCreateEditContext.Provider
         value={{
-          id: articleData?._id || '',
+          id: articleData?.id || '',
           cover: articleData?.cover || '',
           onUpdateArticle: updateArticleHandle,
-          onCreateArticle: createArticleHandle
+          onCreateArticle: createArticleHandle,
+          onUpdateCover: uploaderUpdateCoverHandle
         }}
       >
         <Card title={<ArticleCreateEditHeader />}>
@@ -98,6 +111,6 @@ const ArticleCreateEdit = withRouter((props) => {
       </ArticleCreateEditContext.Provider>
     </section>
   )
-})
+}
 
 export default ArticleCreateEdit;

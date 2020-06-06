@@ -9,12 +9,7 @@ import { ArticleCreateEditContext } from './index';
 
 const ArticleCoverUploader: FC = (props) => {
   const [coverLoading, setCoverLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
   const context = useContext(ArticleCreateEditContext)
-
-  useEffect(() => {
-    setImageUrl(context.cover)
-  }, [context.cover])
 
   const onBeforeUpload = (file: RcFile) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -34,7 +29,8 @@ const ArticleCoverUploader: FC = (props) => {
     if (info.file.status === 'done' && info.file.originFileObj) {
       const { data } = JSON.parse(info.file.xhr.response);
       setCoverLoading(false);
-      setImageUrl(data.url);
+      context.onUpdateCover && context.onUpdateCover(data.url);
+      // setImageUrl(data.url);
     }
   };
 
@@ -44,6 +40,8 @@ const ArticleCoverUploader: FC = (props) => {
       <section className="ant-upload-text">上传封面图</section>
     </section>
   );
+
+  console.log('封面组件', props)
 
   return (
     <Upload
@@ -55,7 +53,7 @@ const ArticleCoverUploader: FC = (props) => {
       beforeUpload={onBeforeUpload}
       onChange={onUploadChange}
     >
-      {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+      {context.cover ? <img src={context.cover} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
     </Upload>
   )
 }

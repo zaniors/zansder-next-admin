@@ -15,9 +15,10 @@ const delArticleAxios = (id: string) => {
   return http.delete(`${ApiUrl.ArticleList}/${id}`);
 }
 
-const updateArticleAxios = (data: ArticleInput) => {
-  const id = data._id;
-  delete data._id;
+const updateArticleAxios = (input: ArticleInput) => {
+  const data = { ...input };
+  const id = data.id;
+  delete data.id;
   return http.patch<ArticleOutputData>(`${ApiUrl.ArticleList}/${id}`, data);
 }
 
