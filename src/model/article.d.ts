@@ -1,9 +1,10 @@
 export interface ArticleOutputData {
-  createTime: Date;
   id: string;
+  createTime: Date;
   title: string;
   cover: string;
   intro: string;
+  content: string;
 }
 
 export class ArticleInput {
@@ -12,4 +13,5 @@ export class ArticleInput {
   title?: string;
   cover?: string;
   intro?: string;
+  content?: string;
 }

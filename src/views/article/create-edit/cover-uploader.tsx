@@ -30,7 +30,6 @@ const ArticleCoverUploader: FC = (props) => {
       const { data } = JSON.parse(info.file.xhr.response);
       setCoverLoading(false);
       context.onUpdateCover && context.onUpdateCover(data.url);
-      // setImageUrl(data.url);
     }
   };
 
@@ -40,8 +39,6 @@ const ArticleCoverUploader: FC = (props) => {
       <section className="ant-upload-text">上传封面图</section>
     </section>
   );
-
-  console.log('封面组件', props)
 
   return (
     <Upload

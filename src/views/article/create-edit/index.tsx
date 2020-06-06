@@ -7,15 +7,18 @@ import ArticleCreateEditHeader from './header';
 import ArticleCoverUploader from './cover-uploader';
 import history from '../../../utils/history';
 import './index.scss';
+import ArticleMarkDown from './markdown';
 
 interface IArticleCreateEditContext {
   id: string;
   cover: string;
+  content: string;
   onUpdateArticle?: () => void;
   onCreateArticle?: () => void;
   onUpdateCover?: (cover: string) => void;
+  onUpdateContent?: (content: string) => void;
 }
-export const ArticleCreateEditContext = createContext<IArticleCreateEditContext>({ cover: '', id: '' });
+export const ArticleCreateEditContext = createContext<IArticleCreateEditContext>({ cover: '', id: '', content: '' });
 
 const ArticleCreateEdit = () => {
   const [form] = Form.useForm();
@@ -52,7 +55,16 @@ const ArticleCreateEdit = () => {
    */
   const uploaderUpdateCoverHandle = (cover: string) => {
     form.setFieldsValue({ cover });
-    setArticleData({ ...articleData, cover });
+    setArticleData({ ...articleData, cover });  // 希望立即更新子组件的封面
+  }
+
+  /**
+   * markdown子组件的html字符串
+   * @param content html string
+   */
+  const markdownUpdateContentHandle = (content: string) => {
+    form.setFieldsValue({ content });
+    // setArticleData({ ...articleData, content }); // markdown不需要更新，内部自己维护了最新的值
   }
 
   useEffect(() => {
@@ -72,9 +84,11 @@ const ArticleCreateEdit = () => {
         value={{
           id: articleData?.id || '',
           cover: articleData?.cover || '',
+          content: articleData?.content || '',
           onUpdateArticle: updateArticleHandle,
           onCreateArticle: createArticleHandle,
-          onUpdateCover: uploaderUpdateCoverHandle
+          onUpdateCover: uploaderUpdateCoverHandle,
+          onUpdateContent: markdownUpdateContentHandle
         }}
       >
         <Card title={<ArticleCreateEditHeader />}>
@@ -105,6 +119,13 @@ const ArticleCreateEdit = () => {
               getValueFromEvent={e => e.fileList}
             >
               <ArticleCoverUploader />
+            </Form.Item>
+
+            <Form.Item
+              label="文章内容"
+              name="content"
+            >
+              <ArticleMarkDown />
             </Form.Item>
           </Form>
         </Card>
