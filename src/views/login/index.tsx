@@ -22,6 +22,8 @@ class Login extends Component<{}, LoginState> {
   render() {
     const onFinish = async (values: any) => {
       const fromData = values as LoginInputData;
+      // TODO 临时删除
+      delete fromData.remember;
       const { data } = await login(fromData);
       if (data.token) {
         message.success('登录成功');
