@@ -1,16 +1,14 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-import { useLocation, Redirect } from 'react-router-dom';
+import RouterGuard from './router/guard';
+
 
 export const AppRoute = (props: any) => {
-  const { pathname } = useLocation()
-
+  console.log('count', props)
   return (
-    <>
-      {pathname === '/' && <Redirect to={'/home'} />}
-      {pathname === '/article' && <Redirect to={'/article/list'} />}
+    <RouterGuard>
       {renderRoutes(props.route.routes)}
-    </>
+    </RouterGuard>
   )
 }
 
