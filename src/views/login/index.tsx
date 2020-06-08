@@ -3,8 +3,8 @@ import { Form, Input, Button, Checkbox, message } from 'antd';
 import { LoginInputData } from '../../model/auth';
 import login from './index.service';
 import config from '../../config';
-import './index.scss';
 import history from '../../utils/history';
+import './index.scss';
 
 const layout = {
   labelCol: { span: 5 },

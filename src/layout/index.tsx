@@ -21,21 +21,18 @@ export const LayoutAdminRoute = (props: any) => {
                 return (
                   <SubMenu key={item.path} title={item.name}>
                     {
-                      item.routes.map((subItem: any) => {
-                        return subItem.name
-                          ?
-                          <Menu.Item key={subItem.path} icon={<subItem.icon />}>
-                            <Link to={subItem.path}>{subItem.name}</Link>
-                          </Menu.Item>
-                          : null
-                      })
+                      item.routes.map((subItem: any) => (
+                        <Menu.Item key={subItem.path} icon={subItem.icon && <subItem.icon />}>
+                          <Link to={subItem.path}>{subItem.name}</Link>
+                        </Menu.Item>
+                      ))
                     }
                   </SubMenu>
                 )
               }
 
               return (
-                <Menu.Item key={item.path} icon={<item.icon />}>
+                <Menu.Item key={item.path} icon={item.icon && <item.icon />}>
                   <Link to={item.path}>{item.name}</Link>
                 </Menu.Item>
               )

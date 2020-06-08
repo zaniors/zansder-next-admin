@@ -14,6 +14,7 @@ import AppRoute from '../App';
 import SystemRoute from '../views/system';
 import SystemUsers from '../views/system/users';
 import ArticleCreateEdit from '../views/article/create-edit';
+import NotFound from '../views/not-found';
 
 const routes = [
   {
@@ -71,7 +72,11 @@ const routes = [
                 icon: UserOutlined,
               }
             ]
-          }
+          },
+          {
+            path: '*',
+            component: NotFound,
+          },
         ]
       }
     ]
