@@ -7,6 +7,7 @@ import { message } from 'antd';
 import config from '../config';
 import { IErrResponse } from '../interface/response';
 import history from '../utils/history';
+import { logout } from '../utils/auth';
 
 // create an axios instance
 const http = axios.create({
@@ -71,6 +72,7 @@ http.interceptors.response.use(
     /** 对401进行重定向登录页面 */
     if (errResponse.code === 401) {
       message.error('用户未登录或者登录过期，请重新登录！');
+      logout();
       history.push('/login');
       return Promise.reject(error);
     }

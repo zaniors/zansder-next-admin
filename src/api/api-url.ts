@@ -5,7 +5,7 @@
  * 遇到特殊情况，比如用户登录则特殊处理/login => post
  */
 enum ApiUrl {
-  ArticleList = '/article',
+  Article = '/article',
   Login = '/login',
   Upload = '/upload'
 }
