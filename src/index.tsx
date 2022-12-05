@@ -1,14 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
-import routes from './router';
-import history from './utils/history';
-import './index.scss';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import './index.scss'
+import reportWebVitals from './reportWebVitals'
 
-ReactDOM.render(
-  <Router history={history}>
-    {renderRoutes(routes)}
-  </Router>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'))
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals()

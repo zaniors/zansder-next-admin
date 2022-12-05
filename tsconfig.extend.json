@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/constants/*": ["./src/constants/*"],
+      "@/store/*": ["./src/store/*"],
+      "@/models/*": ["./src/models/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/router": ["./src/router/index"]
+    }
+  }
+}

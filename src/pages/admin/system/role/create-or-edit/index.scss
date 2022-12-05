@@ -1,0 +1,21 @@
+.system-role-create-or-edit-page-container {
+  .menu-content {
+    .title {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 18px;
+      border-bottom: 1px dashed #e5e5e5;
+      padding: 14px 0;
+
+      &::before {
+        content: '';
+        width: 4px;
+        height: 17px;
+        background: #1890ff;
+        display: inline-block;
+        margin-right: 7px;
+      }
+    }
+  }
+}

@@ -1,40 +1,47 @@
 {
-  "name": "zansder-site-next-admin",
+  "name": "haoshi-admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-router-config": "^5.0.1",
-    "@types/react-router-dom": "^5.1.5",
-    "@types/showdown": "^1.9.3",
-    "antd": "^4.3.0",
-    "axios": "^0.19.2",
-    "cross-env": "^7.0.2",
-    "moment": "^2.26.0",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-config": "^5.1.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-simplemde-editor": "^4.1.1",
-    "showdown": "^1.9.1",
-    "typescript": "~3.7.2"
+    "@types/qs": "^6.9.7",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "antd": "^4.17.3",
+    "axios": "^0.24.0",
+    "classnames": "^2.3.1",
+    "http-proxy-middleware": "^2.0.1",
+    "lodash": "^4.17.21",
+    "qs": "^6.10.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.0",
+    "typescript": "^4.1.2",
+    "wangeditor": "^4.7.9",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "cross-env NODE_ENV=production react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "set PORT=5000 && craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ]
   },
   "browserslist": {
     "production": [
@@ -47,5 +54,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
+    "@craco/craco": "^6.4.0",
+    "@types/react-router-dom": "^5.3.2",
+    "craco-alias": "^3.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "node-sass": "5.0.0",
+    "prettier": "2.4.1"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,css,md}": "prettier --write"
   }
 }

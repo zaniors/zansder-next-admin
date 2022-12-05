@@ -1,0 +1,12 @@
+.admin-layout-container {
+
+  .admin-layout-content {
+    height: 100vh;
+    overflow: auto;
+
+    .site-content {
+      background: #fff;
+      overflow: auto;
+    }
+  }
+}

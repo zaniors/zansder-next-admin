@@ -1,15 +1,13 @@
-import React from 'react';
-import { renderRoutes } from 'react-router-config';
-import RouterGuard from './router/guard';
+import { Provider } from 'react-redux'
+import RootRouter from './router'
+import store from './store'
 
-
-export const AppRoute = (props: any) => {
-  console.log('count', props)
+function App() {
   return (
-    <RouterGuard>
-      {renderRoutes(props.route.routes)}
-    </RouterGuard>
+    <Provider store={store}>
+      <RootRouter />
+    </Provider>
   )
 }
 
-export default AppRoute;
+export default App

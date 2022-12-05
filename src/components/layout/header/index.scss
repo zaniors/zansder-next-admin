@@ -1,0 +1,24 @@
+.ant-layout-header.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+
+  .trigger {
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .trigger:hover {
+    color: #1890ff;
+  }
+
+  .right-content {
+    .user-dropdown {
+      margin: 0 20px;
+    }
+  }
+}

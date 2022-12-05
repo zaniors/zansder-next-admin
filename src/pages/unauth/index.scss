@@ -1,0 +1,41 @@
+.unauth-container-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .header {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 8rem;
+    padding: 5rem 0;
+  }
+
+  .backgroud {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right bottom, left bottom;
+    background-size: calc((100vw - 40rem) / 2 - 3.2rem),
+      calc((100vw - 40rem) / 2 - 3.2rem), cover;
+  }
+
+  .shadow-card {
+    width: 40rem;
+    min-height: 56rem;
+    padding: 3.2rem 4rem;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    .title {
+      margin-bottom: 2.4rem;
+      color: rgb(94, 108, 132);
+    }
+  }
+}
